@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import AuthSession from "./AuthSession";
 
 import localFont from "next/font/local";
 
@@ -19,9 +20,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="kr">
+    <html lang="kr" className={Pretendard.className}>
       <head></head>
-      <body className={Pretendard.className}>{children}</body>
+      <body>
+        <AuthSession>{children}</AuthSession>
+      </body>
     </html>
   );
 }

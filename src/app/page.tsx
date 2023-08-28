@@ -1,9 +1,14 @@
-import Image from "next/image";
+"use client";
+import { signIn, signOut, useSession } from "next-auth/react";
+import ManualSearch from "./components/searchBlog/ManualSearch";
 
 export default function Home() {
+  const { data: session } = useSession();
   return (
     <div>
-      <h1>하이</h1>
+      <button onClick={() => signIn()}>Sign In</button>
+      <button onClick={() => signOut()}>Sign Out</button>
+      <ManualSearch />
     </div>
   );
 }
