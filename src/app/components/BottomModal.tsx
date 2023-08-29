@@ -60,6 +60,19 @@ const BottomModal: React.FC<BottomModalProps> = ({ text }) => {
             />
           )}
         </div>
+        {/* 뒤로가기 버튼 */}
+        <div
+          onClick={() => console.log("뒤로가기")}
+          className="w-32 h-32 absolute -top-38 right-0 bg-brown-700 rounded-10 flex justify-center items-center"
+        >
+          <Image
+            src="/icons/back_arrow.png"
+            width={25}
+            height={25}
+            alt="뒤로가기 아이콘"
+            className="ml-1 mb-1"
+          />
+        </div>
         {/* 텍스트 */}
         <p
           onClick={handleClick}
