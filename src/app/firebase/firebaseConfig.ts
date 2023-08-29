@@ -1,8 +1,9 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
+import { getStorage } from "firebase/storage";
 
 // 파이어베이스 연동 및 설정
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_APIKEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE__AUTH_DOMAIN,
   databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
@@ -18,3 +19,6 @@ const app = initializeApp(firebaseConfig);
 
 // 파이어베이스 RDS
 export const database = getDatabase(app);
+
+// 파이어베이스 Storage
+export const storage = getStorage(app);
