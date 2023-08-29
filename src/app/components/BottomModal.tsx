@@ -43,7 +43,7 @@ const BottomModal: React.FC<BottomModalProps> = ({ text }) => {
     <div className="absolute w-11/12 h-126 bottom-20 left-1/2 transform -translate-x-1/2 ">
       <div className="relative w-full h-full bg-white/80 rounded-10 border-brown-700 border-1.5">
         {/* 캐릭터 */}
-        <div className="w-auto h-95 absolute -top-75 left-6">
+        <div className="w-auto h-95 absolute -top-75 left-6 animate-float">
           {true ? (
             <Image
               src="/images/lily_small_front.png"
