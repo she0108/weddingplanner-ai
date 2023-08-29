@@ -26,20 +26,3 @@ export default function PlanSettingPage() {
     </div>
   );
 }
-
-{
-  /* <BigTodoItem text="상견례" />
-          <BigTodoItem text="웨딩홀" />
-          <BigTodoItem text="결혼식 부케, 코사지, 부토니에" />
-          <BigTodoItem text="본식 메이크업" />
-          <BigTodoItem text="본식 스냅" />
-          <BigTodoItem text="양가어머님 한복" />
-          <BigTodoItem text="양가아버님 예복" />
-          <BigTodoItem text="신부 드레스" />
-          <BigTodoItem text="신랑 예복" />
-          <BigTodoItem text="헬퍼 이모님 섭외" />
-          <BigTodoItem text="결혼반지" />
-          <BigTodoItem text="사회자 축가 섭외" />
-          <BigTodoItem text="사회자 축가 섭외" />
-          <BigTodoItem text="식전 영상 제작" /> */
-}

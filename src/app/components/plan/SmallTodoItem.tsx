@@ -5,7 +5,6 @@ import React, { useState } from "react";
 
 interface SmallTodoItemProps {
   text: string;
-  // todos: string[];
 }
 
 const SmallTodoItem: React.FC<SmallTodoItemProps> = ({ text }) => {

@@ -7,7 +7,6 @@ import { bigTodo, smallTodo } from "../../../../public/data/todo";
 
 interface BigTodoItemProps {
   index: number;
-  // todos: string[];
 }
 
 const BigTodoItem: React.FC<BigTodoItemProps> = ({ index }) => {
