@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import SmallTodoItem from "./SmallTodoItem";
 import Image from "next/image";
 import { bigTodo, smallTodo } from "../../../../public/data/todo";
+import useTodoStore from "@/app/store/todoStore";
 
 interface BigTodoItemProps {
   index: number;
@@ -11,8 +12,7 @@ interface BigTodoItemProps {
 
 const BigTodoItem: React.FC<BigTodoItemProps> = ({ index }) => {
   const [isOpen, setIsOpen] = useState(false);
-
-  console.log("BigTodoItem", index);
+  const { bigTodoState, smallTodoState } = useTodoStore();
 
   return (
     <>
@@ -25,8 +25,8 @@ const BigTodoItem: React.FC<BigTodoItemProps> = ({ index }) => {
             {bigTodo[index]}
           </h1>
           <div className="flex flex-col space-y-6">
-            {smallTodo[index].map((text, index) => (
-              <SmallTodoItem key={index} text={text} />
+            {smallTodo[index].map((_, i) => (
+              <SmallTodoItem key={i} bigIndex={index} smallIndex={i} />
             ))}
           </div>
         </div>
@@ -36,12 +36,45 @@ const BigTodoItem: React.FC<BigTodoItemProps> = ({ index }) => {
           className="w-full h-50 bg-ivory rounded-10 flex flex-row justify-between items-center px-15"
         >
           <h1 className="text-18 font-500 text-brown-700">{bigTodo[index]}</h1>
-          <Image
-            src="/images/flower_pink.png"
-            width={25}
-            height={25}
-            alt="꽃"
-          />
+          {bigTodoState[index] === "in progress" ? (
+            <div className="w-25 h-25 relative">
+              <Image
+                src="/images/flower_beige.png"
+                fill={true}
+                alt="꽃"
+                className="object-contain"
+              />
+              <div
+                className="w-25 absolute bottom-0"
+                style={{
+                  height:
+                    (smallTodoState[index].filter((done) => done).length /
+                      smallTodoState[index].length) *
+                    25,
+                }}
+              >
+                <Image
+                  src="/images/flower_pink.png"
+                  fill={true}
+                  alt="꽃"
+                  className="object-cover object-bottom"
+                />
+              </div>
+            </div>
+          ) : (
+            <div className="w-25 h-25 relative">
+              <Image
+                src={
+                  bigTodoState[index] === "todo"
+                    ? "/images/flower_beige.png"
+                    : "/images/flower_pink.png"
+                }
+                fill={true}
+                alt="꽃"
+                className="object-contain"
+              />
+            </div>
+          )}
         </div>
       )}
     </>
