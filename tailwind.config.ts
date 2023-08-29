@@ -3,6 +3,12 @@ import type { Config } from "tailwindcss";
 const px0_100: { [key: number]: string } = {
   ...Array.from(Array(101)).map((_, i) => `${i}px`),
 };
+const px0_50_5: { [key: string]: string } = Object.fromEntries(
+  Array.from(Array(101)).map((_, i) => [`${i / 2}`, `${i / 2}px`])
+);
+const px0_400: { [key: number]: string } = {
+  ...Array.from(Array(401)).map((_, i) => `${i}px`),
+};
 const px0_800: { [key: number]: string } = {
   ...Array.from(Array(801)).map((_, i) => `${i}px`),
 };
@@ -20,7 +26,9 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
-      spacing: px0_800,
+      spacing: px0_100,
+      width: px0_400,
+      height: px0_800,
       fontSize: px0_100,
       fontWeight: {
         100: "100",
@@ -33,6 +41,7 @@ const config: Config = {
         800: "800",
         900: "900",
       },
+      borderWidth: px0_50_5,
       borderRadius: px0_100,
       lineHeight: px0_100,
     },

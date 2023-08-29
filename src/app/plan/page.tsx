@@ -1,5 +1,5 @@
-import BigTodoItem from "../components/Todo/BigTodoItem";
-import TodoTab from "../components/Todo/TodoTab";
+import BigTodoItem from "../components/plan/BigTodoItem";
+import TodoTab from "../components/plan/TodoTab";
 
 export default function PlanSettingPage() {
   return (
