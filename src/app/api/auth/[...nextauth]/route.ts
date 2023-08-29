@@ -1,14 +1,9 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import NaverProvider from "next-auth/providers/naver";
-import { FirestoreAdapter } from "@auth/firebase-adapter";
+import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import type { Adapter } from "next-auth/adapters";
-import { cert } from "firebase-admin/app";
-import { firebaseConfig } from "@/app/firebase/firebaseConfig";
+import clientPromise from "@/app/mongodb/clientPromise";
 
-const privateKey = process.env.NEXT_PUBLIC_FIREBASE_PRIVATE_KEY!.replace(
-  /\\n/g,
-  "\n"
-);
 export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
@@ -22,7 +17,7 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/auth/signin",
   },
-  adapter: FirestoreAdapter(firebaseConfig) as Adapter,
+  adapter: MongoDBAdapter(clientPromise) as Adapter,
 };
 
 const handler = NextAuth(authOptions);
