@@ -3,14 +3,17 @@
 import React, { useState } from "react";
 import SmallTodoItem from "./SmallTodoItem";
 import Image from "next/image";
+import { bigTodo, smallTodo } from "../../../../public/data/todo";
 
 interface BigTodoItemProps {
-  text: string;
+  index: number;
   // todos: string[];
 }
 
-const BigTodoItem: React.FC<BigTodoItemProps> = ({ text }) => {
+const BigTodoItem: React.FC<BigTodoItemProps> = ({ index }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  console.log("BigTodoItem", index);
 
   return (
     <>
@@ -20,13 +23,12 @@ const BigTodoItem: React.FC<BigTodoItemProps> = ({ text }) => {
             onClick={() => setIsOpen(false)}
             className="text-18 font-500 text-brown-700 leading-50"
           >
-            {text}
+            {bigTodo[index]}
           </h1>
           <div className="flex flex-col space-y-6">
-            <SmallTodoItem text="상견례 날짜 확인" />
-            <SmallTodoItem text="상견례 장소 예약" />
-            <SmallTodoItem text="상견례 선물 주문" />
-            <SmallTodoItem text="숙소 예약" />
+            {smallTodo[index].map((text, index) => (
+              <SmallTodoItem key={index} text={text} />
+            ))}
           </div>
         </div>
       ) : (
@@ -34,7 +36,7 @@ const BigTodoItem: React.FC<BigTodoItemProps> = ({ text }) => {
           onClick={() => setIsOpen(true)}
           className="w-full h-50 bg-ivory rounded-10 flex flex-row justify-between items-center px-15"
         >
-          <h1 className="text-18 font-500 text-brown-700">{text}</h1>
+          <h1 className="text-18 font-500 text-brown-700">{bigTodo[index]}</h1>
           <Image
             src="/images/flower_pink.png"
             width={25}

@@ -43,7 +43,7 @@ const BottomModal: React.FC<BottomModalProps> = ({ text }) => {
     <div className="absolute w-11/12 h-126 bottom-20 left-1/2 transform -translate-x-1/2 ">
       <div className="relative w-full h-full bg-white/80 rounded-10 border-brown-700 border-1.5">
         {/* 캐릭터 */}
-        <div className="w-auto h-95 absolute -top-75 left-6">
+        <div className="w-auto h-95 absolute -top-75 left-6 animate-float">
           {true ? (
             <Image
               src="/images/lily_small_front.png"
@@ -59,6 +59,19 @@ const BottomModal: React.FC<BottomModalProps> = ({ text }) => {
               alt="캐릭터 측면"
             />
           )}
+        </div>
+        {/* 뒤로가기 버튼 */}
+        <div
+          onClick={() => console.log("뒤로가기")}
+          className="w-32 h-32 absolute -top-38 right-0 bg-brown-700 rounded-10 flex justify-center items-center"
+        >
+          <Image
+            src="/icons/back_arrow.png"
+            width={25}
+            height={25}
+            alt="뒤로가기 아이콘"
+            className="ml-1 mb-1"
+          />
         </div>
         {/* 텍스트 */}
         <p
