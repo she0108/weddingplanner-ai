@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
+import BigTodoItem from "./BigTodoItem";
+import useTodoStore from "@/app/store/todoStore";
 
 interface TodoTabProps {
   children: React.ReactNode; // children의 타입을 React.ReactNode로 지정
@@ -9,6 +11,7 @@ interface TodoTabProps {
 
 const TodoTab: React.FC<TodoTabProps> = ({ children }) => {
   const [currentTab, setCurrentTab] = useState("todo");
+  const { bigTodoState } = useTodoStore();
 
   const handleTabClick = (clicked: string) => {
     setCurrentTab(clicked);
@@ -55,6 +58,14 @@ const TodoTab: React.FC<TodoTabProps> = ({ children }) => {
           >
             완료
           </div>
+        )}
+      </div>
+      {/* 리스트 */}
+      <div className="w-auto grow m-30 mb-20 space-y-11 overflow-y-scroll">
+        {bigTodoState.map((state, index) =>
+          state === currentTab ? (
+            <BigTodoItem key={index} index={index} />
+          ) : null
         )}
       </div>
       {children}
