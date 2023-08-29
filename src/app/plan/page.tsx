@@ -1,7 +1,7 @@
 import BigTodoItem from "../components/Todo/BigTodoItem";
 import TodoTab from "../components/Todo/TodoTab";
 
-export default function TodoPage() {
+export default function PlanSettingPage() {
   return (
     <div className="w-screen h-screen flex flex-col">
       <div className="w-full grow">D-DAY</div>
