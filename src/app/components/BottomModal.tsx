@@ -14,13 +14,28 @@ const BottomModal: React.FC<BottomModalProps> = ({ text, onNextClick }) => {
   const [nextAbled, setNextAbled] = useState(false);
   const [typingInProgress, setTypingInProgress] = useState(true);
 
+  // 새로운 텍스트가 전달될 때마다,
+  // 타이핑 효과를 다시 시작하도록 처리
+  useEffect(() => {
+    setCurrentText("");
+    setCurrentIndex(0);
+    setNextAbled(false);
+    setTypingInProgress(true);
+
+    // TTS 실행
+    if (text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 2;
+      window.speechSynthesis.speak(utterance);
+    }
+  }, [text]);
+
   useEffect(() => {
     if (currentIndex < text.length) {
       const timeout = setTimeout(() => {
         setCurrentText((prevText) => prevText + text[currentIndex]);
         setCurrentIndex((prevIndex) => prevIndex + 1);
       }, 50);
-
       return () => clearTimeout(timeout);
     } else {
       setNextAbled(true);
@@ -36,14 +51,6 @@ const BottomModal: React.FC<BottomModalProps> = ({ text, onNextClick }) => {
       setTypingInProgress(true);
     }
   };
-
-  useEffect(() => {
-    // 새로운 텍스트가 전달될 때마다 타이핑 효과를 다시 시작하도록 처리
-    setCurrentText("");
-    setCurrentIndex(0);
-    setNextAbled(false);
-    setTypingInProgress(true);
-  }, [text]);
 
   return (
     <div

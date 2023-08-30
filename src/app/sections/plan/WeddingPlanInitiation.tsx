@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import BottomModal from "@/app/components/BottomModal";
 
 export default function WeddingPlanInitiation() {
-  const [processStatus, setProcessStatus] = useState<number>(1);
+  const [processStatus, setProcessStatus] = useState<number>(0);
 
   const handleNextClick = () => {
     setProcessStatus(processStatus + 1);
@@ -11,6 +11,11 @@ export default function WeddingPlanInitiation() {
 
   let process;
   switch (processStatus) {
+    case 0:
+      process = (
+        <BottomModal key="step0" text="" onNextClick={handleNextClick} />
+      );
+      break;
     case 1:
       process = (
         <BottomModal
