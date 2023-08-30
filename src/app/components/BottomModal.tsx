@@ -5,14 +5,15 @@ import React, { useState, useEffect } from "react";
 
 interface BottomModalProps {
   text: string;
+  onNextClick: () => void;
 }
 
-const BottomModal: React.FC<BottomModalProps> = ({ text }) => {
+const BottomModal: React.FC<BottomModalProps> = ({ text, onNextClick }) => {
   const [currentText, setCurrentText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [nextAbled, setNextAbled] = useState(false);
+  const [typingInProgress, setTypingInProgress] = useState(true);
 
-  // 타이핑 효과
   useEffect(() => {
     if (currentIndex < text.length) {
       const timeout = setTimeout(() => {
@@ -23,24 +24,32 @@ const BottomModal: React.FC<BottomModalProps> = ({ text }) => {
       return () => clearTimeout(timeout);
     } else {
       setNextAbled(true);
+      setTypingInProgress(false);
     }
   }, [currentIndex, text]);
 
   const handleClick = () => {
-    // 타이핑 효과 스킵
-    if (currentText != text) {
+    if (!typingInProgress) {
       setCurrentIndex(text.length);
       setCurrentText(text);
-      return;
-    }
-    // 다음 화면
-    if (nextAbled) {
-      console.log("다음 대사");
+      onNextClick();
+      setTypingInProgress(true);
     }
   };
 
+  useEffect(() => {
+    // 새로운 텍스트가 전달될 때마다 타이핑 효과를 다시 시작하도록 처리
+    setCurrentText("");
+    setCurrentIndex(0);
+    setNextAbled(false);
+    setTypingInProgress(true);
+  }, [text]);
+
   return (
-    <div className="absolute w-11/12 h-126 bottom-20 left-1/2 transform -translate-x-1/2 ">
+    <div
+      className="absolute w-11/12 h-126 bottom-20 left-1/2 transform -translate-x-1/2 "
+      onClick={handleClick}
+    >
       <div className="relative w-full h-full bg-white/80 rounded-10 border-brown-700 border-1.5">
         {/* 캐릭터 */}
         <div className="w-auto h-95 absolute -top-75 left-6 animate-float">
@@ -75,8 +84,8 @@ const BottomModal: React.FC<BottomModalProps> = ({ text }) => {
         </div>
         {/* 텍스트 */}
         <p
-          onClick={handleClick}
           className="h-full py-18 px-20 text-16 font-500 text-brown-700 text-center whitespace-pre-line"
+          onClickCapture={handleClick}
         >
           {currentText}
         </p>
@@ -88,6 +97,7 @@ const BottomModal: React.FC<BottomModalProps> = ({ text }) => {
             height={9}
             alt="다음 버튼"
             className="absolute right-20 bottom-18 animate-pulse"
+            onClickCapture={handleClick}
           />
         )}
       </div>

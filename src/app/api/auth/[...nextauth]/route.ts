@@ -17,12 +17,12 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/auth/signin",
   },
-  adapter: MongoDBAdapter(clientPromise) as Adapter,
+  // adapter: MongoDBAdapter(clientPromise) as Adapter,
   callbacks: {
-    async session(params) {
-      const { session, token, user, newSession, trigger } = params;
-      return session;
-    },
+    // async session(params) {
+    //   const { session, token, user, newSession, trigger } = params;
+    //   return session;
+    // },
 
     async redirect({ url }) {
       return "/plan";
