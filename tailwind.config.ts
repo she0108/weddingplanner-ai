@@ -49,9 +49,14 @@ const config: Config = {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-5px)" },
         },
+        flooat: {
+          "0%, 100%": { transform: "translateX(-50%) translateY(-50%)" },
+          "50%": { transform: "translateX(-50%) translateY(-60%)" },
+        },
       },
       animation: {
         float: "float 2s ease-in-out infinite",
+        flooat: "flooat 1.8s ease-in-out infinite",
       },
     },
     colors: {
