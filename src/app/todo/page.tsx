@@ -1,4 +1,4 @@
-import TodoTab from "../components/plan/TodoTab";
+import TodoTab from "../components/todo/TodoTab";
 
 export default function PlanSettingPage() {
   return (
