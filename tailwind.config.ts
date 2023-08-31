@@ -79,6 +79,11 @@ const config: Config = {
         400: "#FDC3C3",
         500: "#FCB4B4",
       },
+      gray: {
+        100: "#F5F5F5",
+        200: "#EEEEEE",
+        300: "#E0E0E0",
+      },
     },
   },
   plugins: [],
