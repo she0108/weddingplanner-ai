@@ -10,7 +10,7 @@ const Pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "WedddingAI",
+  title: "WeddingAI",
   description: "AI 웨딩 플래너 서비스",
 };
 

@@ -9,7 +9,6 @@ export default function Home() {
   const { data: session } = useSession();
   return (
     <div className="flex grow flex-col justify-center items-center bg-slate-50 h-screen">
-      <WeddingPlanInitiation />
       <StartButton />
     </div>
   );
